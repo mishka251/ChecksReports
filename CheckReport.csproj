@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>netcoreapp3.1-windows</TargetFramework>
+        <UseWindowsForms>true</UseWindowsForms>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="EntityFramework" Version="6.4.4" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.6">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.5.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="ProductsForm.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="ProductDetailForm.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="CustomersList.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="CustomerDetailForm.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="OrdersList.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="OrderDetailForm.cs">
+        <SubType>Form</SubType>
+      </Compile>
+    </ItemGroup>
+
+</Project>
