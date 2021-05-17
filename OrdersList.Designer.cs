@@ -35,6 +35,7 @@ namespace CheckReport
             this.BtnChange = new System.Windows.Forms.Button();
             this.BtnAdd = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.BtnReport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize) (this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,11 +79,22 @@ namespace CheckReport
             this.dataGridView1.Size = new System.Drawing.Size(532, 242);
             this.dataGridView1.TabIndex = 4;
             // 
+            // BtnReport
+            // 
+            this.BtnReport.Location = new System.Drawing.Point(595, 300);
+            this.BtnReport.Name = "BtnReport";
+            this.BtnReport.Size = new System.Drawing.Size(124, 45);
+            this.BtnReport.TabIndex = 8;
+            this.BtnReport.Text = "Сохранить отчет";
+            this.BtnReport.UseVisualStyleBackColor = true;
+            this.BtnReport.Click += new System.EventHandler(this.BtnReport_Click);
+            // 
             // OrdersList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.BtnReport);
             this.Controls.Add(this.BtnDelete);
             this.Controls.Add(this.BtnChange);
             this.Controls.Add(this.BtnAdd);
@@ -93,6 +105,8 @@ namespace CheckReport
             ((System.ComponentModel.ISupportInitialize) (this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.Button BtnReport;
 
         private System.Windows.Forms.Button BtnDelete;
         private System.Windows.Forms.Button BtnChange;

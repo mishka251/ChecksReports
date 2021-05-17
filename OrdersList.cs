@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 using Microsoft.EntityFrameworkCore;
 
@@ -39,6 +40,23 @@ namespace CheckReport
             Order selected = db.Orders.Find(selectedId);
             db.Orders.Remove(selected);
             db.SaveChanges();
+        }
+
+        private void BtnReport_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            var dialogResult =  saveFileDialog.ShowDialog();
+            if (dialogResult != DialogResult.OK && dialogResult != DialogResult.Yes)
+            {
+                return;
+            }
+
+            StreamWriter writer = new StreamWriter(saveFileDialog.FileName);
+            foreach (var order in this.db.Orders)
+            {
+                order.Save(writer);
+            }
+            writer.Close();
         }
     }
 }
