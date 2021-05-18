@@ -138,6 +138,7 @@ namespace CheckReport
             
 
             db.SaveChanges();
+            this.Close();
         }
 
         private void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)

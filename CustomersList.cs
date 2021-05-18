@@ -7,14 +7,14 @@ namespace CheckReport
     public partial class CustomersList : Form
     {
         private PostgresDataBaseContext db;
-        
+
         public CustomersList(PostgresDataBaseContext db)
         {
             this.db = db;
             InitializeComponent();
         }
 
-        
+
         private void CustomersList_Load(object sender, EventArgs e)
         {
             db.Customers.Load();
@@ -29,17 +29,27 @@ namespace CheckReport
 
         private void BtnChange_Click(object sender, EventArgs e)
         {
+            if (this.dataGridView1.SelectedRows.Count != 1)
+            {
+                MessageBox.Show("Выберите одну строку");
+                return;
+            }
+
             var selectedId = this.dataGridView1.SelectedRows[0].Cells["Id"].Value;
             Customer selected = db.Customers.Find(selectedId);
-            CustomerDetailForm add = new CustomerDetailForm(this.db,selected);
+            CustomerDetailForm add = new CustomerDetailForm(this.db, selected);
             add.Show();
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            var selectedId = this.dataGridView1.SelectedRows[0].Cells["Id"].Value;
-            Customer selected = db.Customers.Find(selectedId);
-            db.Customers.Remove(selected);
+            foreach (DataGridViewRow selectedRow in this.dataGridView1.SelectedRows)
+            {
+                var selectedId = selectedRow.Cells["Id"].Value;
+                Customer selected = db.Customers.Find(selectedId);
+                db.Customers.Remove(selected);
+            }
+
             db.SaveChanges();
         }
     }

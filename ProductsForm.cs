@@ -35,6 +35,11 @@ namespace CheckReport
 
         private void BtnChange_Click(object sender, EventArgs e)
         {
+            if (this.dataGridView1.SelectedRows.Count != 1)
+            {
+                MessageBox.Show("Выберите одну строку");
+                return;
+            }
             var selectedId = this.dataGridView1.SelectedRows[0].Cells["Id"].Value;
             Product selected = db.Products.Find(selectedId);
             var detail = new ProductDetailForm(db, selected);
@@ -43,9 +48,13 @@ namespace CheckReport
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            var selectedId = this.dataGridView1.SelectedRows[0].Cells["Id"].Value;
-            Product selected = db.Products.Find(selectedId);
-            db.Products.Remove(selected);
+            foreach (DataGridViewRow selectedRow in this.dataGridView1.SelectedRows)
+            {
+                var selectedId = selectedRow.Cells["Id"].Value;
+                Product selected = db.Products.Find(selectedId);
+                db.Products.Remove(selected);
+            }
+
             db.SaveChanges();
         }
     }

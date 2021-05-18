@@ -41,6 +41,7 @@ namespace CheckReport
             this.product.Count = (int)this.NuCount.Value;
 
             db.SaveChanges();
+            this.Close();
         }
     }
 }
