@@ -50,8 +50,62 @@ namespace CheckReport
             this.Close();
         }
 
+        private bool Validate()
+        {
+            List<string> errors = new List<string>();
+            List<int> productsIds = new List<int>();
+            for (int row = 0; row < this.dataGridView1.RowCount - 1; row++)
+            {
+                int productId = (int)(this.dataGridView1[0, row] as DataGridViewComboBoxCell).Value;
+                Product product = this.db.Products.Find(productId);
+
+                if (productsIds.Contains(productId))
+                {
+                    errors.Add($"Строка {row+1} товар {product} повтоярется с {productsIds.IndexOf(productId)+1} строкой");
+                }
+                
+                productsIds.Add(productId);
+                
+                object _count = this.dataGridView1[1, row].Value;
+                int count;
+                if (_count is int)
+                {
+                    count = (int)_count;
+                }
+                else
+                {
+                    if (!int.TryParse(_count as string, out count))
+                    {
+                        errors.Add($"Строка {row+1} количество - не число");
+                        continue;
+                    }
+                }
+                
+                
+                int anotherOrdersProductCount = product.ProductInOrders.Sum(inOrder => inOrder.Order==this.order?0: inOrder.ProductCount);
+                int productCountLeft = product.Count - anotherOrdersProductCount;
+                if (count > productCountLeft)
+                {
+                    errors.Add($"Строка {row+1} количество товара {count} больше остатка товара {productCountLeft}");
+                }
+                // this.order.ProductInOrders.Add(new ProductInOrder(){ProductCount = count, Product = product, Order = this.order});
+            }
+
+            if (errors.Count() > 0)
+            {
+                MessageBox.Show(String.Join("\n", errors));
+                return false;
+            }
+            
+            return true;
+        }
+        
         private void BtnOk_Click(object sender, EventArgs e)
         {
+            if (!this.Validate())
+            {
+                return;
+            }
             if (this.order == null)
             {
                 this.order = new Order();
