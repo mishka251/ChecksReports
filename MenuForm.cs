@@ -43,5 +43,17 @@ namespace CheckReport
             OrdersList orders = new OrdersList(this.db);
             orders.Show();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ProductGroupsList orders = new ProductGroupsList(this.db);
+            orders.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            TradeDepartmentsList orders = new TradeDepartmentsList(this.db);
+            orders.Show();
+        }
     }
 }

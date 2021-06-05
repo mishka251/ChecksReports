@@ -3,15 +3,17 @@ using System;
 using CheckReport;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace CheckReport.Migrations
 {
     [DbContext(typeof(PostgresDataBaseContext))]
-    partial class PostgresDataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210605102625_FixesPart1")]
+    partial class FixesPart1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -105,21 +107,6 @@ namespace CheckReport.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("CheckReport.ProductGroup", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ProductGroups");
-                });
-
             modelBuilder.Entity("CheckReport.ProductInOrder", b =>
                 {
                     b.Property<int>("OrderId")
@@ -150,7 +137,7 @@ namespace CheckReport.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TradeDepartments");
+                    b.ToTable("TradeDepartment");
                 });
 
             modelBuilder.Entity("CheckReport.Customer", b =>
