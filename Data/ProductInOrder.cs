@@ -44,7 +44,7 @@ namespace CheckReport
 
         public void Save(StreamWriter writer)
         {
-            writer.WriteLine($"Товар: {Product}, количество: {ProductCount}");
+            writer.WriteLine($"{Product}, {ProductCount}, {PriceType}, {Discount}");
         }
     }
 }

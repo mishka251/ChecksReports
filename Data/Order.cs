@@ -37,11 +37,15 @@ namespace CheckReport
         public void Save(StreamWriter writer)
         {
             writer.WriteLine("------------------");
-            writer.WriteLine($"Заказ {Customer} от {DateTime} на сумму :{this.CalculatePrice()}, {ProductInOrders.Count} товаров:");
+            writer.WriteLine($"Накладная");
+            writer.WriteLine($"от {DateTime}");
+            writer.WriteLine(Type);
+            writer.WriteLine($"Название Количество Цена Скидка");
             foreach (var productInOrder in ProductInOrders)
             {
                 productInOrder.Save(writer);
             }
+            writer.WriteLine($"Итого {this.CalculatePrice()}");
             writer.WriteLine();
             
         }
