@@ -32,26 +32,52 @@ namespace CheckReport
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ProductType = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PriceType = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.BtnOk = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
-            this.ProductType = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CbType = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.TbComment = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize) (this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {this.ProductType, this.Count});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 29);
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {this.ProductType, this.Count, this.PriceType, this.Discount});
+            this.dataGridView1.Location = new System.Drawing.Point(54, 27);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(382, 170);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
+            // 
+            // ProductType
+            // 
+            this.ProductType.HeaderText = "Тип продукта";
+            this.ProductType.Name = "ProductType";
+            // 
+            // Count
+            // 
+            this.Count.HeaderText = "Количетсво";
+            this.Count.Name = "Count";
+            // 
+            // PriceType
+            // 
+            this.PriceType.HeaderText = "Цена";
+            this.PriceType.Name = "PriceType";
+            // 
+            // Discount
+            // 
+            this.Discount.HeaderText = "Скидка";
+            this.Discount.Name = "Discount";
             // 
             // comboBox1
             // 
@@ -86,7 +112,7 @@ namespace CheckReport
             // 
             // BtnOk
             // 
-            this.BtnOk.Location = new System.Drawing.Point(30, 358);
+            this.BtnOk.Location = new System.Drawing.Point(33, 396);
             this.BtnOk.Name = "BtnOk";
             this.BtnOk.Size = new System.Drawing.Size(135, 33);
             this.BtnOk.TabIndex = 5;
@@ -96,7 +122,7 @@ namespace CheckReport
             // 
             // BtnCancel
             // 
-            this.BtnCancel.Location = new System.Drawing.Point(235, 355);
+            this.BtnCancel.Location = new System.Drawing.Point(238, 393);
             this.BtnCancel.Name = "BtnCancel";
             this.BtnCancel.Size = new System.Drawing.Size(134, 35);
             this.BtnCancel.TabIndex = 6;
@@ -104,23 +130,46 @@ namespace CheckReport
             this.BtnCancel.UseVisualStyleBackColor = true;
             this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
-            // ProductType
+            // CbType
             // 
-            this.ProductType.DisplayMember = "Value";
-            this.ProductType.HeaderText = "Тип продукта";
-            this.ProductType.Name = "ProductType";
-            this.ProductType.ValueMember = "Key";
+            this.CbType.FormattingEnabled = true;
+            this.CbType.Location = new System.Drawing.Point(165, 319);
+            this.CbType.Name = "CbType";
+            this.CbType.Size = new System.Drawing.Size(227, 21);
+            this.CbType.TabIndex = 7;
             // 
-            // Count
+            // label3
             // 
-            this.Count.HeaderText = "Количетсво";
-            this.Count.Name = "Count";
+            this.label3.Location = new System.Drawing.Point(33, 318);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(89, 21);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Тип";
+            // 
+            // TbComment
+            // 
+            this.TbComment.Location = new System.Drawing.Point(159, 349);
+            this.TbComment.Name = "TbComment";
+            this.TbComment.Size = new System.Drawing.Size(234, 20);
+            this.TbComment.TabIndex = 9;
+            // 
+            // label4
+            // 
+            this.label4.Location = new System.Drawing.Point(25, 347);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(113, 21);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Примечание";
             // 
             // OrderDetailForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.TbComment);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.CbType);
             this.Controls.Add(this.BtnCancel);
             this.Controls.Add(this.BtnOk);
             this.Controls.Add(this.label2);
@@ -132,7 +181,17 @@ namespace CheckReport
             this.Text = "OrderDetailForm";
             ((System.ComponentModel.ISupportInitialize) (this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
         }
+
+        private System.Windows.Forms.TextBox TbComment;
+        private System.Windows.Forms.Label label4;
+
+        private System.Windows.Forms.ComboBox CbType;
+        private System.Windows.Forms.Label label3;
+
+        private System.Windows.Forms.DataGridViewComboBoxColumn PriceType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Discount;
 
         private System.Windows.Forms.Button BtnCancel;
 

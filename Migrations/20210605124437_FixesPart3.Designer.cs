@@ -3,15 +3,17 @@ using System;
 using CheckReport;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace CheckReport.Migrations
 {
     [DbContext(typeof(PostgresDataBaseContext))]
-    partial class PostgresDataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210605124437_FixesPart3")]
+    partial class FixesPart3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,17 +70,11 @@ namespace CheckReport.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("Comment")
-                        .HasColumnType("text");
-
                     b.Property<int?>("CustomerId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("timestamp without time zone");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -145,12 +141,6 @@ namespace CheckReport.Migrations
                         .HasColumnType("integer");
 
                     b.Property<int>("ProductId")
-                        .HasColumnType("integer");
-
-                    b.Property<decimal>("Discount")
-                        .HasColumnType("numeric");
-
-                    b.Property<int>("PriceType")
                         .HasColumnType("integer");
 
                     b.Property<int>("ProductCount")

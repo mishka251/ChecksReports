@@ -3,15 +3,17 @@ using System;
 using CheckReport;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace CheckReport.Migrations
 {
     [DbContext(typeof(PostgresDataBaseContext))]
-    partial class PostgresDataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210605205900_Fixes5")]
+    partial class Fixes5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,8 +79,8 @@ namespace CheckReport.Migrations
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<int>("Type")
-                        .HasColumnType("integer");
+                    b.Property<string>("Type")
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 

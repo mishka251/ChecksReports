@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Windows.Forms;
@@ -21,6 +22,15 @@ namespace CheckReport
 
             this.db.Customers.Load();
             this.comboBox1.Items.AddRange(this.db.Customers.ToArray());
+            this.CbType.DataSource =
+                Enum.GetValues(typeof(OrderType))
+                    .Cast<OrderType>()
+                    .Select(p => new {Name = Enum.GetName(typeof(OrderType), p), Value = (int) p})
+                    .ToList();
+
+            this.CbType.DisplayMember = "Name";
+            this.CbType.ValueMember = "Name";
+
 
             this.db.Products.Load();
             var products = this.db.Products;
@@ -31,16 +41,31 @@ namespace CheckReport
             }
 
             (dataGridView1.Columns["ProductType"] as DataGridViewComboBoxColumn).DataSource =
-                new BindingSource(comboSource, null);
+                new BindingList<Product>(this.db.Products.ToList());
+            (dataGridView1.Columns["ProductType"] as DataGridViewComboBoxColumn).ValueMember = "Id";
+            (dataGridView1.Columns["ProductType"] as DataGridViewComboBoxColumn).DisplayMember = "Name";
+
+            (dataGridView1.Columns["PriceType"] as DataGridViewComboBoxColumn).DataSource =
+                Enum.GetValues(typeof(PriceType))
+                    .Cast<PriceType>()
+                    .Select(p => new {Name = Enum.GetName(typeof(PriceType), p), Value = (int) p})
+                    .ToList();
+
+            (dataGridView1.Columns["PriceType"] as DataGridViewComboBoxColumn).DisplayMember = "Name";
+            (dataGridView1.Columns["PriceType"] as DataGridViewComboBoxColumn).ValueMember = "Name";
+
 
             if (order != null)
             {
                 this.dateTimePicker1.Value = order.DateTime;
                 this.comboBox1.SelectedItem = order.Customer;
+                this.TbComment.Text = order.Comment;
+                this.CbType.SelectedItem = order.Type.ToString();
 
                 foreach (var product in order?.ProductInOrders)
                 {
-                    dataGridView1.Rows.Add(product.Product.Id, product.ProductCount);
+                    dataGridView1.Rows.Add(product.Product.Id, product.ProductCount, product.PriceType.ToString(),
+                        product.Discount);
                 }
             }
         }
@@ -54,6 +79,10 @@ namespace CheckReport
         {
             List<string> errors = new List<string>();
             List<int> productsIds = new List<int>();
+
+            OrderType orderType = (OrderType) Enum.Parse(typeof(OrderType), CbType.SelectedValue.ToString());
+
+
             for (int row = 0; row < this.dataGridView1.RowCount - 1; row++)
             {
                 int productId = (int) (this.dataGridView1[0, row] as DataGridViewComboBoxCell).Value;
@@ -82,18 +111,28 @@ namespace CheckReport
                     }
                 }
 
-
-                int anotherOrdersProductCount = 0;
-                if (product.ProductInOrders != null)
+                int productCountWithoutThis = product.Count;
+                if (this.order != null)
                 {
-                    anotherOrdersProductCount = product.ProductInOrders.Sum(inOrder =>
-                        inOrder.Order == this.order ? 0 : inOrder.ProductCount);
+                    var productInOrder = this.order.ProductInOrders
+                        .Find((inOrder => inOrder.Product == product));
+                    if (productInOrder != null)
+                    {
+                        if (this.order.Type == OrderType.Incoming)
+                        {
+                            productCountWithoutThis -= productInOrder.ProductCount;
+                        }
+                        else
+                        {
+                            productCountWithoutThis += productInOrder.ProductCount;
+                        }
+                    }
                 }
 
-                int productCountLeft = product.Count - anotherOrdersProductCount;
-                if (count > productCountLeft)
+                if (count > productCountWithoutThis && orderType != OrderType.Incoming)
                 {
-                    errors.Add($"Строка {row + 1} количество товара {count} больше остатка товара {productCountLeft}");
+                    errors.Add(
+                        $"Строка {row + 1} количество товара {count} больше остатка товара {productCountWithoutThis}");
                 }
                 // this.order.ProductInOrders.Add(new ProductInOrder(){ProductCount = count, Product = product, Order = this.order});
             }
@@ -109,6 +148,11 @@ namespace CheckReport
 
         private void BtnOk_Click(object sender, EventArgs e)
         {
+            if (!this.Validate())
+            {
+                return;
+            }
+
             if (this.order == null)
             {
                 this.order = new Order();
@@ -117,6 +161,12 @@ namespace CheckReport
 
             this.order.Customer = this.comboBox1.SelectedItem as Customer;
             this.order.DateTime = this.dateTimePicker1.Value;
+            this.order.Comment = this.TbComment.Text;
+
+            OrderType orderType = (OrderType) Enum.Parse(typeof(OrderType), CbType.SelectedValue.ToString());
+
+
+            this.order.Type = orderType;
             this.order.ProductInOrders?.Clear();
 
             this.order.ProductInOrders = new List<ProductInOrder>();
@@ -136,8 +186,30 @@ namespace CheckReport
 
                 int productId = (int) (this.dataGridView1[0, row] as DataGridViewComboBoxCell).Value;
                 Product product = this.db.Products.Find(productId);
+
+                PriceType priceType = (PriceType) Enum.Parse(typeof(PriceType),
+                    (this.dataGridView1[2, row] as DataGridViewComboBoxCell).Value.ToString());
+
+
+                object dicount = this.dataGridView1[3, row].Value;
+                Decimal discount = 0;
+                if (dicount is decimal)
+                {
+                    discount = (decimal) dicount;
+                }
+                else
+                {
+                    discount = Decimal.Parse(dicount as string);
+                }
+
                 this.order.ProductInOrders.Add(new ProductInOrder()
-                    {ProductCount = count, Product = product, Order = this.order});
+                {
+                    ProductCount = count,
+                    Product = product,
+                    Order = this.order,
+                    PriceType = priceType,
+                    Discount = discount
+                });
             }
 
 

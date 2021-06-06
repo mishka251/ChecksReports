@@ -31,45 +31,36 @@ namespace CheckReport
         /// </summary>
         private void InitializeComponent()
         {
-            this.LblVendorCode = new System.Windows.Forms.Label();
-            this.TbVendorCode = new System.Windows.Forms.TextBox();
             this.TbName = new System.Windows.Forms.TextBox();
             this.LblName = new System.Windows.Forms.Label();
             this.LblPrice = new System.Windows.Forms.Label();
-            this.NuPrice = new System.Windows.Forms.NumericUpDown();
-            this.NuCount = new System.Windows.Forms.NumericUpDown();
-            this.LblCount = new System.Windows.Forms.Label();
+            this.NuPriceRetail = new System.Windows.Forms.NumericUpDown();
             this.BtnOk = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize) (this.NuPrice)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize) (this.NuCount)).BeginInit();
+            this.CbGroup = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.CbDepartment = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.TbUnit = new System.Windows.Forms.TextBox();
+            this.NuPriceWholesale = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
+            this.TbCountry = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize) (this.NuPriceRetail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.NuPriceWholesale)).BeginInit();
             this.SuspendLayout();
-            // 
-            // LblVendorCode
-            // 
-            this.LblVendorCode.Location = new System.Drawing.Point(27, 64);
-            this.LblVendorCode.Name = "LblVendorCode";
-            this.LblVendorCode.Size = new System.Drawing.Size(80, 32);
-            this.LblVendorCode.TabIndex = 0;
-            this.LblVendorCode.Text = "Артикул";
-            // 
-            // TbVendorCode
-            // 
-            this.TbVendorCode.Location = new System.Drawing.Point(188, 66);
-            this.TbVendorCode.Name = "TbVendorCode";
-            this.TbVendorCode.Size = new System.Drawing.Size(176, 20);
-            this.TbVendorCode.TabIndex = 1;
             // 
             // TbName
             // 
-            this.TbName.Location = new System.Drawing.Point(188, 121);
+            this.TbName.Location = new System.Drawing.Point(132, 26);
             this.TbName.Name = "TbName";
             this.TbName.Size = new System.Drawing.Size(176, 20);
             this.TbName.TabIndex = 3;
             // 
             // LblName
             // 
-            this.LblName.Location = new System.Drawing.Point(27, 119);
+            this.LblName.Location = new System.Drawing.Point(26, 29);
             this.LblName.Name = "LblName";
             this.LblName.Size = new System.Drawing.Size(80, 32);
             this.LblName.TabIndex = 2;
@@ -77,37 +68,22 @@ namespace CheckReport
             // 
             // LblPrice
             // 
-            this.LblPrice.Location = new System.Drawing.Point(26, 158);
+            this.LblPrice.Location = new System.Drawing.Point(8, 145);
             this.LblPrice.Name = "LblPrice";
             this.LblPrice.Size = new System.Drawing.Size(98, 38);
             this.LblPrice.TabIndex = 4;
-            this.LblPrice.Text = "Цена";
+            this.LblPrice.Text = " Цена розиначная";
             // 
-            // NuPrice
+            // NuPriceRetail
             // 
-            this.NuPrice.Location = new System.Drawing.Point(175, 165);
-            this.NuPrice.Name = "NuPrice";
-            this.NuPrice.Size = new System.Drawing.Size(188, 20);
-            this.NuPrice.TabIndex = 5;
-            // 
-            // NuCount
-            // 
-            this.NuCount.Location = new System.Drawing.Point(176, 209);
-            this.NuCount.Name = "NuCount";
-            this.NuCount.Size = new System.Drawing.Size(188, 20);
-            this.NuCount.TabIndex = 7;
-            // 
-            // LblCount
-            // 
-            this.LblCount.Location = new System.Drawing.Point(27, 202);
-            this.LblCount.Name = "LblCount";
-            this.LblCount.Size = new System.Drawing.Size(98, 38);
-            this.LblCount.TabIndex = 6;
-            this.LblCount.Text = "Количество";
+            this.NuPriceRetail.Location = new System.Drawing.Point(130, 145);
+            this.NuPriceRetail.Name = "NuPriceRetail";
+            this.NuPriceRetail.Size = new System.Drawing.Size(188, 20);
+            this.NuPriceRetail.TabIndex = 5;
             // 
             // BtnOk
             // 
-            this.BtnOk.Location = new System.Drawing.Point(26, 310);
+            this.BtnOk.Location = new System.Drawing.Point(25, 362);
             this.BtnOk.Name = "BtnOk";
             this.BtnOk.Size = new System.Drawing.Size(118, 32);
             this.BtnOk.TabIndex = 8;
@@ -117,7 +93,7 @@ namespace CheckReport
             // 
             // BtnCancel
             // 
-            this.BtnCancel.Location = new System.Drawing.Point(230, 302);
+            this.BtnCancel.Location = new System.Drawing.Point(229, 354);
             this.BtnCancel.Name = "BtnCancel";
             this.BtnCancel.Size = new System.Drawing.Size(123, 39);
             this.BtnCancel.TabIndex = 9;
@@ -125,45 +101,136 @@ namespace CheckReport
             this.BtnCancel.UseVisualStyleBackColor = true;
             this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
+            // CbGroup
+            // 
+            this.CbGroup.FormattingEnabled = true;
+            this.CbGroup.Location = new System.Drawing.Point(133, 69);
+            this.CbGroup.Name = "CbGroup";
+            this.CbGroup.Size = new System.Drawing.Size(174, 21);
+            this.CbGroup.TabIndex = 10;
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(33, 69);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(73, 17);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Группа товара";
+            // 
+            // CbDepartment
+            // 
+            this.CbDepartment.FormattingEnabled = true;
+            this.CbDepartment.Location = new System.Drawing.Point(133, 103);
+            this.CbDepartment.Name = "CbDepartment";
+            this.CbDepartment.Size = new System.Drawing.Size(173, 21);
+            this.CbDepartment.TabIndex = 12;
+            // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(25, 106);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 17);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Отдел товара";
+            // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(15, 252);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(74, 26);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Еденица измерения";
+            // 
+            // TbUnit
+            // 
+            this.TbUnit.Location = new System.Drawing.Point(132, 255);
+            this.TbUnit.Name = "TbUnit";
+            this.TbUnit.Size = new System.Drawing.Size(156, 20);
+            this.TbUnit.TabIndex = 15;
+            // 
+            // NuPriceWholesale
+            // 
+            this.NuPriceWholesale.Location = new System.Drawing.Point(130, 171);
+            this.NuPriceWholesale.Name = "NuPriceWholesale";
+            this.NuPriceWholesale.Size = new System.Drawing.Size(188, 20);
+            this.NuPriceWholesale.TabIndex = 17;
+            // 
+            // label4
+            // 
+            this.label4.Location = new System.Drawing.Point(8, 171);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(98, 38);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "Цена оптовая";
+            // 
+            // TbCountry
+            // 
+            this.TbCountry.Location = new System.Drawing.Point(133, 297);
+            this.TbCountry.Name = "TbCountry";
+            this.TbCountry.Size = new System.Drawing.Size(156, 20);
+            this.TbCountry.TabIndex = 19;
+            // 
+            // label5
+            // 
+            this.label5.Location = new System.Drawing.Point(16, 294);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(74, 26);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "Страна";
+            // 
             // ProductDetailForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.TbCountry);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.NuPriceWholesale);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.TbUnit);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.CbDepartment);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.CbGroup);
             this.Controls.Add(this.BtnCancel);
             this.Controls.Add(this.BtnOk);
-            this.Controls.Add(this.NuCount);
-            this.Controls.Add(this.NuPrice);
+            this.Controls.Add(this.NuPriceRetail);
             this.Controls.Add(this.LblPrice);
             this.Controls.Add(this.TbName);
             this.Controls.Add(this.LblName);
-            this.Controls.Add(this.LblCount);
-            this.Controls.Add(this.TbVendorCode);
-            this.Controls.Add(this.LblVendorCode);
             this.Name = "ProductDetailForm";
             this.Text = "ProductDetailForm";
-            ((System.ComponentModel.ISupportInitialize) (this.NuPrice)).EndInit();
-            ((System.ComponentModel.ISupportInitialize) (this.NuCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.NuPriceRetail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.NuPriceWholesale)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.NumericUpDown NuPriceWholesale;
+        private System.Windows.Forms.TextBox TbCountry;
+        private System.Windows.Forms.Label label5;
+
+        private System.Windows.Forms.Label label4;
+
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox CbDepartment;
+        private System.Windows.Forms.Label label2;
+
+        private System.Windows.Forms.ComboBox CbGroup;
 
         private System.Windows.Forms.Button BtnOk;
         private System.Windows.Forms.Button BtnCancel;
 
         private System.Windows.Forms.Button button1;
 
-        private System.Windows.Forms.Label LblCount;
-        private System.Windows.Forms.NumericUpDown NuCount;
-
         private System.Windows.Forms.Label LblPrice;
-        private System.Windows.Forms.NumericUpDown NuPrice;
+        private System.Windows.Forms.NumericUpDown NuPriceRetail;
 
         private System.Windows.Forms.TextBox TbName;
+        private System.Windows.Forms.TextBox TbUnit;
         private System.Windows.Forms.Label LblName;
-
-        private System.Windows.Forms.Label LblVendorCode;
-        private System.Windows.Forms.TextBox TbVendorCode;
 
         #endregion
     }

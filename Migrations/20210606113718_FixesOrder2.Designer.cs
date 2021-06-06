@@ -3,15 +3,17 @@ using System;
 using CheckReport;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace CheckReport.Migrations
 {
     [DbContext(typeof(PostgresDataBaseContext))]
-    partial class PostgresDataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210606113718_FixesOrder2")]
+    partial class FixesOrder2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

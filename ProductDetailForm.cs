@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace CheckReport
@@ -11,13 +13,32 @@ namespace CheckReport
         {
             this.db = db;
             InitializeComponent();
+            
+            BindingList<ProductGroup>
+                groups = new BindingList<ProductGroup>(this.db.ProductGroups.ToList());
+            
+            CbGroup.ValueMember = null;
+            // CbGroup.DisplayMember = "Name";
+            CbGroup.DataSource = groups;
+            
+            BindingList<TradeDepartment>
+                departments = new BindingList<TradeDepartment>(this.db.TradeDepartments.ToList());
+            
+            CbDepartment.ValueMember = null;
+            // CbDepartment.DisplayMember = "Name";
+            CbDepartment.DataSource = departments;
+            
             this.product = product;
             if (product != null)
             {
-                this.TbVendorCode.Text = product.VendorCode;
                 this.TbName.Text = product.Name;
-                this.NuCount.Value = product.Count;
-                this.NuPrice.Value = product.Price;
+                // this.NuCount.Value = product.Count;
+                this.NuPriceRetail.Value = product.RetailPrice;
+                this.NuPriceWholesale.Value = product.WholesalePrice;
+                this.CbGroup.SelectedItem = product.Group;
+                this.CbDepartment.SelectedItem = product.Department;
+                this.TbUnit.Text = product.Unit;
+                this.TbCountry.Text = product.Country;
             }
         }
 
@@ -35,10 +56,15 @@ namespace CheckReport
                 db.Products.Add(this.product);
             }
 
-            this.product.VendorCode = this.TbVendorCode.Text;
+            // this.product.VendorCode = this.TbVendorCode.Text;
             this.product.Name = this.TbName.Text;
-            this.product.Price = this.NuPrice.Value;
-            this.product.Count = (int)this.NuCount.Value;
+            this.product.RetailPrice = this.NuPriceRetail.Value;
+            this.product.WholesalePrice = this.NuPriceWholesale.Value;
+            this.product.Group = (ProductGroup)this.CbGroup.SelectedItem;
+            this.product.Department = (TradeDepartment)this.CbDepartment.SelectedItem;
+            this.product.Unit = this.TbUnit.Text;
+            this.product.Country = this.TbCountry.Text;
+            // this.product.Count = (int)this.NuCount.Value;
 
             db.SaveChanges();
             this.Close();
