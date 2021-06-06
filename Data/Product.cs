@@ -44,7 +44,7 @@ namespace CheckReport
                 }
                 foreach (var order in ProductInOrders)
                 {
-                    if (order.Order.Type == OrderType.Incoming)
+                    if (order.Order.Type == OrderType.Приход)
                     {
                         count += order.ProductCount;
                     }

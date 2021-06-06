@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Windows.Forms;
 
 namespace CheckReport
 {
 
     public enum OrderType
     {
-        Incoming=0,//приход
-        Selling=1,//реализация
-        WriteOff=2//списание
+        Приход=0,
+        Реализация=1,
+        Списание=2
     }
 
     public class Order

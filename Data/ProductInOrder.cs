@@ -4,13 +4,13 @@ namespace CheckReport
 {
     /// <summary>
     /// Тип цены
-    /// Retail - розница
-    /// Wholesale - оптовая
+    /// Розничная - розница
+    /// Оптовая - оптовая
     /// </summary>
     public enum PriceType
     {
-        Retail = 0,
-        Wholesale = 1,
+        Розничная = 0,
+        Оптовая = 1,
     }
 
     public class ProductInOrder
@@ -35,7 +35,7 @@ namespace CheckReport
         {
             get
             {
-                decimal productPrice = this.Discount * (this.PriceType == PriceType.Retail
+                decimal productPrice = this.Discount * (this.PriceType == PriceType.Розничная
                     ? this.Product.RetailPrice
                     : this.Product.WholesalePrice);
                 return this.ProductCount * productPrice;

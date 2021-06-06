@@ -118,7 +118,7 @@ namespace CheckReport
                         .Find((inOrder => inOrder.Product == product));
                     if (productInOrder != null)
                     {
-                        if (this.order.Type == OrderType.Incoming)
+                        if (this.order.Type == OrderType.Приход)
                         {
                             productCountWithoutThis -= productInOrder.ProductCount;
                         }
@@ -129,7 +129,7 @@ namespace CheckReport
                     }
                 }
 
-                if (count > productCountWithoutThis && orderType != OrderType.Incoming)
+                if (count > productCountWithoutThis && orderType != OrderType.Приход)
                 {
                     errors.Add(
                         $"Строка {row + 1} количество товара {count} больше остатка товара {productCountWithoutThis}");
