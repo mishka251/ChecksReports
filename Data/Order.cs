@@ -36,16 +36,17 @@ namespace CheckReport
         }
         public void Save(StreamWriter writer)
         {
+            writer.WriteLine(";;;;;");
             writer.WriteLine("------------------");
             writer.WriteLine($"Накладная");
             writer.WriteLine($"от {DateTime}");
             writer.WriteLine(Type);
-            writer.WriteLine($"Название Количество Цена Скидка");
+            writer.WriteLine($"Название; Количество; Оптовая/Розничная; Цена; Скидка; Итого");
             foreach (var productInOrder in ProductInOrders)
             {
                 productInOrder.Save(writer);
             }
-            writer.WriteLine($"Итого {this.CalculatePrice()}");
+            writer.WriteLine($"Итого; {this.CalculatePrice()}");
             writer.WriteLine();
             
         }

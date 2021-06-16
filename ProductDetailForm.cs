@@ -37,7 +37,7 @@ namespace CheckReport
                 this.NuPriceWholesale.Value = product.WholesalePrice;
                 this.CbGroup.SelectedItem = product.Group;
                 this.CbDepartment.SelectedItem = product.Department;
-                this.TbUnit.Text = product.Unit;
+                this.cbUnit.SelectedItem = product.Unit;
                 this.TbCountry.Text = product.Country;
             }
         }
@@ -62,7 +62,7 @@ namespace CheckReport
             this.product.WholesalePrice = this.NuPriceWholesale.Value;
             this.product.Group = (ProductGroup)this.CbGroup.SelectedItem;
             this.product.Department = (TradeDepartment)this.CbDepartment.SelectedItem;
-            this.product.Unit = this.TbUnit.Text;
+            this.product.Unit = this.cbUnit.SelectedItem as string;
             this.product.Country = this.TbCountry.Text;
             // this.product.Count = (int)this.NuCount.Value;
 

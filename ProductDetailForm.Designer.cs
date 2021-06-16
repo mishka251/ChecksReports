@@ -42,11 +42,11 @@ namespace CheckReport
             this.CbDepartment = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.TbUnit = new System.Windows.Forms.TextBox();
             this.NuPriceWholesale = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.TbCountry = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.cbUnit = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize) (this.NuPriceRetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.NuPriceWholesale)).BeginInit();
             this.SuspendLayout();
@@ -76,7 +76,9 @@ namespace CheckReport
             // 
             // NuPriceRetail
             // 
+            this.NuPriceRetail.DecimalPlaces = 2;
             this.NuPriceRetail.Location = new System.Drawing.Point(130, 145);
+            this.NuPriceRetail.Maximum = new decimal(new int[] {-1530494976, 232830, 0, 0});
             this.NuPriceRetail.Name = "NuPriceRetail";
             this.NuPriceRetail.Size = new System.Drawing.Size(188, 20);
             this.NuPriceRetail.TabIndex = 5;
@@ -141,16 +143,11 @@ namespace CheckReport
             this.label3.TabIndex = 14;
             this.label3.Text = "Еденица измерения";
             // 
-            // TbUnit
-            // 
-            this.TbUnit.Location = new System.Drawing.Point(132, 255);
-            this.TbUnit.Name = "TbUnit";
-            this.TbUnit.Size = new System.Drawing.Size(156, 20);
-            this.TbUnit.TabIndex = 15;
-            // 
             // NuPriceWholesale
             // 
+            this.NuPriceWholesale.DecimalPlaces = 2;
             this.NuPriceWholesale.Location = new System.Drawing.Point(130, 171);
+            this.NuPriceWholesale.Maximum = new decimal(new int[] {-1530494976, 232830, 0, 0});
             this.NuPriceWholesale.Name = "NuPriceWholesale";
             this.NuPriceWholesale.Size = new System.Drawing.Size(188, 20);
             this.NuPriceWholesale.TabIndex = 17;
@@ -178,16 +175,25 @@ namespace CheckReport
             this.label5.TabIndex = 18;
             this.label5.Text = "Страна";
             // 
+            // cbUnit
+            // 
+            this.cbUnit.FormattingEnabled = true;
+            this.cbUnit.Items.AddRange(new object[] {"кг", "шт", "м3", "м2", "м", "г", "л", "т"});
+            this.cbUnit.Location = new System.Drawing.Point(129, 249);
+            this.cbUnit.Name = "cbUnit";
+            this.cbUnit.Size = new System.Drawing.Size(159, 21);
+            this.cbUnit.TabIndex = 20;
+            // 
             // ProductDetailForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cbUnit);
             this.Controls.Add(this.TbCountry);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.NuPriceWholesale);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.TbUnit);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.CbDepartment);
@@ -206,6 +212,8 @@ namespace CheckReport
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.ComboBox cbUnit;
 
         private System.Windows.Forms.NumericUpDown NuPriceWholesale;
         private System.Windows.Forms.TextBox TbCountry;
@@ -229,7 +237,6 @@ namespace CheckReport
         private System.Windows.Forms.NumericUpDown NuPriceRetail;
 
         private System.Windows.Forms.TextBox TbName;
-        private System.Windows.Forms.TextBox TbUnit;
         private System.Windows.Forms.Label LblName;
 
         #endregion

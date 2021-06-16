@@ -35,16 +35,17 @@ namespace CheckReport
         {
             get
             {
-                decimal productPrice = this.Discount * (this.PriceType == PriceType.Розничная
+                decimal productPrice = (this.PriceType == PriceType.Розничная
                     ? this.Product.RetailPrice
                     : this.Product.WholesalePrice);
-                return this.ProductCount * productPrice;
+                return this.ProductCount * productPrice*((decimal)1-this.Discount/100);
             }
         }
 
         public void Save(StreamWriter writer)
         {
-            writer.WriteLine($"{Product}, {ProductCount}, {PriceType}, {Discount}");
+            decimal priceValue = PriceType == PriceType.Оптовая ? Product.WholesalePrice : Product.RetailPrice;
+            writer.WriteLine($"{Product}; {ProductCount}; {PriceType}; {priceValue}; {Discount}; {Price}");
         }
     }
 }
